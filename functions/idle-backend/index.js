@@ -5,10 +5,8 @@ const vision = require('@google-cloud/vision');
 
 
 exports.detectFace = (req, res) => {
-    res.status(200).send(req.body);
+    res.status(200).send(req);
 };
-  
-
 
 async function detect(img) {
     // Creates a client
