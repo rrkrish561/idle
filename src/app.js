@@ -1,13 +1,13 @@
 
-
 window.onload = function() {
-    startCamera();
-  };
+    initiateCamera();
+};
 
-function startCamera() {
+
+function initiateCamera() {
     let videoElement = document.getElementById('video');
-    let canvasElement = document.getElementById('canvas');
-    const webcam = new Webcam(videoElement, 'user', canvasElement);
+    let canvas = document.getElementById('canvas');
+    const webcam = new Webcam(videoElement, 'user', canvas);
 
     webcam.start()
         .then(result =>{
@@ -16,13 +16,11 @@ function startCamera() {
         .catch(err => {
         console.log(err);
     });
-}
 
-
-function captureImage(webcam) {
-    return webcam.snap();   
-}  
+    setInterval(function(){return webcamp.snap();}, 30000, webcam);
+} 
 
 function stopCamera(webcam) {
     webcam.stop();
 }
+
