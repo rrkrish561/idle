@@ -1,6 +1,113 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Source Sans Pro", sans-serif;
+  box-sizing: border-box;
+}
+
 .main-container {
+  position: relative;
   display: flex;
-  width: 500px;
-  height: 500px;
   background: white;
+  flex-flow: column;
+  margin-left: 1rem;
+  align-items: center;
+  width: 30rem;
+  height: 35rem;
+
+  .header-container {
+    margin: 3rem 0 2rem 0;
+  }
+}
+
+.message-container {
+  width: 15rem;
+  text-align: center;
+
+  .message {
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+}
+
+.button-container {
+  position: absolute;
+  bottom: 5rem;
+}
+
+button {
+  border: none;
+  outline: none;
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: #4eb5f1;
+  text-align: center;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #4095c6;
+  }
+
+  &:focus {
+    outline: none;
+    outline: 0 !important;
+  }
+
+  &:active {
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+
+    @media all and (max-width: 30em) {
+      button {
+        display: block;
+        margin: 0.2em auto;
+      }
+    }
+  }
+}
+
+.bounce {
+  animation-name: bounce;
+  animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
+}
+@keyframes bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(1.1, 0.9) translateY(0);
+  }
+  30% {
+    transform: scale(0.9, 1.1) translateY(-100px);
+  }
+  50% {
+    transform: scale(1.05, 0.95) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(-7px);
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
 }
