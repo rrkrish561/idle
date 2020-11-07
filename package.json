@@ -1,0 +1,12 @@
+{
+  "name": "idle",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:rrkrish561/idle.git",
+  "author": "Raghu Radhakrishnan <rradhakrishnan1@ufl.edu>",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/vision": "^2.1.2",
+    "dotenv": "^8.2.0"
+  }
+}
