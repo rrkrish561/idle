@@ -4,13 +4,16 @@ require('dotenv').config();
 const vision = require('@google-cloud/vision');
 
 
+exports.detectFace = (req, res) => {
+    let message = req.query.message || req.body.message || 'Hello World!'
+    res.status(200).send(message);
+};
+  
+
+
 async function detect() {
     // Creates a client
     const client = new vision.ImageAnnotatorClient();
-
-    /**
-     * TODO(developer): Uncomment the following line before running the sample.
-     */
     const fileName = './images/39843138-sad-man.jpg';
 
     const [result] = await client.faceDetection(fileName);
@@ -28,4 +31,4 @@ async function detect() {
     });
 }
 
-detect()
+//detect()
