@@ -7,6 +7,7 @@ window.onload = function() {
 function initiateCamera() {
     let videoElement = document.getElementById('video');
     let canvas = document.getElementById('canvas');
+    let webview = document.getElementById('webview');
     const webcam = new Webcam(videoElement, 'user', canvas);
 
     webcam.start()
@@ -34,7 +35,7 @@ function processImage(webcam, canvas) {
 
     const image = {base64: b64};
 
-    let url = 'https://cors-anywhere.herokuapp.com/https://us-central1-micro-access-294918.cloudfunctions.net/detectFace';
+    let url = 'https://us-central1-micro-access-294918.cloudfunctions.net/detectFace';
 
     fetch(url, {headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, method: "POST", body: JSON.stringify(image)})
         .then(response => response.json())
