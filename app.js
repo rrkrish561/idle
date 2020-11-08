@@ -7,7 +7,6 @@ window.onload = function() {
 function initiateCamera() {
     let videoElement = document.getElementById('video');
     let canvas = document.getElementById('canvas');
-    let webview = document.getElementById('webview');
     const webcam = new Webcam(videoElement, 'user', canvas);
 
     webcam.start()
