@@ -1,4 +1,7 @@
 
+var webCamElement = document.getElementById("video");
+
+
 window.onload = function() {
     initiateCamera();
 };
@@ -8,6 +11,8 @@ function initiateCamera() {
     let videoElement = document.getElementById('video');
     let canvas = document.getElementById('canvas');
     const webcam = new Webcam(videoElement, 'user', canvas);
+
+    videoElement.visibility = "hidden";
 
     webcam.start()
         .then(result =>{
@@ -38,8 +43,27 @@ function processImage(webcam, canvas) {
 
     fetch(url, {headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, method: "POST", body: JSON.stringify(image)})
         .then(response => response.json())
-        .then(data => console.log(data));
+        .then(data => analyze(data));
 }
+
+function analyze(data) {
+    console.log(data)
+
+    let emotionAnger = "";
+    let emotionSorrow = "";
+    let emotionJoy = "";
+    let rollAngle = "";
+
+    let faceData = data.faceAnnotations;
+
+    if (faceData.length > 0) {
+        emotionAnger = faceData[0].angerLikelihood;
+        emotionSorrow = faceData[0].sorrowLikelihood;
+        emotionJoy = faceData[0].joyLikelihood;
+        rollAngle = faceData[0].tiltAngle;
+    }
+}
+
 
 function stopCamera(webcam) {
     webcam.stop();

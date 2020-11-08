@@ -1,4 +1,19 @@
-video {
-    margin-left: auto;
-    margin-right: auto;
+video #video {
+  margin-left: auto;
+  margin-right: auto;
+
+  height: 0 !important;
+  width: 0 !important;
+}
+
+canvas {
+  width: 0;
+  height: 0;
+}
+
+.video-container {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  background-color: white;
 }
