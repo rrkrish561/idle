@@ -1,4 +1,14 @@
 "use strict";
+<<<<<<< HEAD
+=======
+navigator.permissions.query({name: 'camera'})
+.then((permissionObj) => {
+ console.log(permissionObj.state);
+})
+.catch((error) => {
+ console.log('Got error :', error);
+});
+>>>>>>> 0ebad2fad0a4e7d6aa50eb03e7dad837eba54b15
 
 chrome.runtime.onInstalled.addListener(function () {
   chrome.storage.sync.set({ color: "#3aa757" }, function () {
@@ -14,3 +24,7 @@ chrome.runtime.onInstalled.addListener(function () {
     }]);
   });
 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0ebad2fad0a4e7d6aa50eb03e7dad837eba54b15
