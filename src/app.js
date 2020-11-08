@@ -17,8 +17,20 @@ function initiateCamera() {
         console.log(err);
     });
 
-    setInterval(function(){return webcamp.snap();}, 30000, webcam);
+    setTimeout(function(){processImage(webcam)}, 3000);
 } 
+
+function processImage(webcam) {
+    let base64Image = webcam.snap();
+    
+    const image = {base64: base64Image};
+    console.log(image)
+    let url = 'https://cors-anywhere.herokuapp.com/https://us-central1-micro-access-294918.cloudfunctions.net/detectFace';
+
+    fetch(url, {headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, method: "POST", body: JSON.stringify(image)})
+        .then(response => response.json())
+        .then(data => console.log(data));
+}
 
 function stopCamera(webcam) {
     webcam.stop();
