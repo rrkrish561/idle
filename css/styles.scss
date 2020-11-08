@@ -23,20 +23,20 @@ body {
   flex-flow: column;
   margin-left: 1rem;
   align-items: center;
-  width: 25rem;
-  height: 35rem;
+  width: 100vw;
+  height: 100vh;
 
   .header-container {
-    margin: 3rem 0 2rem 0;
+    margin: 3rem 0 3rem 0;
   }
 }
 
 .message-container {
-  width: 15rem;
+  width: 30rem;
   text-align: center;
 
   .message {
-    font-size: 1.8rem;
+    font-size: 3rem;
     font-weight: 600;
     line-height: 3rem;
   }
@@ -44,7 +44,7 @@ body {
 
 .button-container {
   position: absolute;
-  bottom: 5rem;
+  bottom: 7rem;
 }
 
 button {
@@ -53,14 +53,14 @@ button {
   display: inline-block;
   padding: 0.5rem 1.2em;
   margin: 0 0.3em 0.3em 0;
-  border-radius: 2rem;
+  border-radius: 3rem;
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 300;
-  font-size: 1.5rem;
+  font-size: 2.3rem;
   color: #ffffff;
-  background-color: #4eb5f1;
+  background-color: #71c6f5;
   text-align: center;
   transition: all 0.2s;
 
