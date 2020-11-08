@@ -1,0 +1,106 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Source Sans Pro", sans-serif;
+  box-sizing: border-box;
+}
+
+.main-container {
+  position: relative;
+  display: flex;
+  background: white;
+  flex-flow: column;
+  margin-left: 1rem;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  .header-container {
+    margin: 3rem 0 3rem 0;
+  }
+}
+
+.message-container {
+  width: 30rem;
+  text-align: center;
+
+  .message {
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 3rem;
+    padding-bottom: 20vh;
+  }
+
+  .message-container {
+    padding-top: 64px;
+    margin-top: 64px;
+  }
+}
+
+.button-container {
+  position: absolute;
+  bottom: 7rem;
+}
+
+button {
+  border: none;
+  outline: none;
+  display: inline-block;
+  padding: 0.5rem 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 3rem;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 300;
+  font-size: 2.3rem;
+  color: #ffffff;
+  background-color: #71c6f5;
+  text-align: center;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #4095c6;
+  }
+
+  &:focus {
+    outline: none;
+    outline: 0 !important;
+  }
+
+  &:active {
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+
+    @media all and (max-width: 30em) {
+      button {
+        display: block;
+        margin: 0.2em auto;
+      }
+    }
+  }
+
+  video #video {
+    margin-left: auto;
+    margin-right: auto;
+    display: none !important;
+    background-color: white;
+    opacity: 0;
+  }
+
+  canvas {
+    width: 0;
+    height: 0;
+  }
+}

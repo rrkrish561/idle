@@ -1,0 +1,32 @@
+{
+  "name": "IDLE",
+  "version": "1.0",
+  "description": " IDLE tracks if the user is stressed in their virtual work environment.",
+<<<<<<< Updated upstream
+  "content_security_policy": "script-src 'self' https://unpkg.com/webcam-easy/dist/webcam-easy.min.js; object-src 'self'",
+  "permissions": ["declarativeContent", "storage"],
+=======
+  "permissions": ["declarativeContent", "storage", "videoCapture"],
+
+>>>>>>> Stashed changes
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "page_action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "images/low-res-logo.png",
+      "32": "images/low-res-logo.png",
+      "48": "images/low-res-logo.png",
+      "128": "images/low-res-logo.png"
+    }
+  },
+  "icons": {
+    "16": "images/low-res-logo.png",
+    "32": "images/low-res-logo.png",
+    "48": "images/low-res-logo.png",
+    "128": "images/low-res-logo.png"
+  },
+  "manifest_version": 2
+}
