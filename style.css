@@ -17,3 +17,8 @@ canvas {
   overflow: hidden;
   background-color: white;
 }
+
+.message-posture {
+  padding-top: 64px;
+  margin-top: 64px;
+}

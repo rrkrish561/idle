@@ -1,3 +1,4 @@
+//const { stat } = require("fs");
 
 var webCamElement = document.getElementById("video");
 
@@ -22,7 +23,9 @@ function initiateCamera() {
         console.log(err);
     });
 
-    setTimeout(function(){processImage(webcam, canvas)}, 3000);
+    setInterval(function(){processImage(webcam, canvas)}, 5000);
+
+    document.getElementById('button').addEventListener("click", window.close());
 } 
 
 function processImage(webcam, canvas) {
@@ -47,23 +50,61 @@ function processImage(webcam, canvas) {
 }
 
 function analyze(data) {
+    const CONFID_LEVEL = 0.96;
+
     console.log(data)
 
-    let emotionAnger = "";
-    let emotionSorrow = "";
-    let emotionJoy = "";
-    let rollAngle = "";
+    let state = {};
 
     let faceData = data.faceAnnotations;
+    let stressData = data.stressLevel.payload;
 
     if (faceData.length > 0) {
-        emotionAnger = faceData[0].angerLikelihood;
-        emotionSorrow = faceData[0].sorrowLikelihood;
-        emotionJoy = faceData[0].joyLikelihood;
-        rollAngle = faceData[0].tiltAngle;
+        state.anger = faceData[0].angerLikelihood;;
+        state.sorrow = faceData[0].sorrowLikelihood;
+        state.joy = faceData[0].joyLikelihood;
+        state.tilt = faceData[0].tiltAngle;
     }
+
+    if (stressData.length > 0 && stressData[0].classification.score > CONFID_LEVEL) {
+        state.stress = stressData[0].displayName;
+        state.postureThreshold = -10;
+    }
+
+    idleSays(state);
 }
 
+function idleSays(state) {
+    let stateIs = new Set();
+    stateIs.add("POSSIBLE");
+    stateIs.add("LIKELY");
+    stateIs.add("VERY_LIKELY");
+
+    let stressComments = ["You seem a little stressed, how about you take a quick break!", 
+        "Are you staying hydrated? Try taking a quick water break", "I suggest a cup of coffee to destress!"];
+
+    let joyComments = ["You're doing good, keep it up!", "Looking good!", "Nice work keeping calm!"];
+
+    let postureComments = ["Your neck posture may be off, I suggest sitting up straight", 
+        "It's important to keep a strong posture when working"];
+
+    let textBox = document.getElementById('message');
+    let dashedLine = document.getElementById('dashed-line');
+    let postureBox = document.getElementById('message-posture');
+
+    if ((state.anger !== undefined && stateIs.has(state.anger)) || state.stress !== undefined && state.stress === "Stressed") {
+        textBox.textContent = stressComments[Math.floor(Math.random() * stressComments.length)];
+    } else if (state.joy !== undefined && stateIs.has(state.joy)) {
+        textBox.textContent = joyComments[Math.floor(Math.random() * joyComments.length)];
+    }
+
+    if (state.tilt != undefined && state.tilt < state.postureThreshold) {
+        dashedLine.textContent ="________________________________________";
+        postureBox.textContent = postureComments[Math.floor(Math.random() * postureComments.length)] + "\n\n\n";
+    } else {
+        postureBox.textContent = "";
+    }
+}
 
 function stopCamera(webcam) {
     webcam.stop();
