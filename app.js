@@ -1,4 +1,7 @@
 
+var webCamElement = document.getElementById("video");
+
+
 window.onload = function() {
     initiateCamera();
 };
@@ -9,6 +12,8 @@ function initiateCamera() {
     let canvas = document.getElementById('canvas');
     let webview = document.getElementById('webview');
     const webcam = new Webcam(videoElement, 'user', canvas);
+
+    videoElement.visibility = "hidden";
 
     webcam.start()
         .then(result =>{
