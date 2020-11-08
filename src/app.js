@@ -34,12 +34,10 @@ function processImage(webcam, canvas) {
 
     const image = {base64: b64};
 
-    console.log(image)
-
     let url = 'https://cors-anywhere.herokuapp.com/https://us-central1-micro-access-294918.cloudfunctions.net/detectFace';
 
     fetch(url, {headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, method: "POST", body: JSON.stringify(image)})
-        .then(response => JSON.parse(response))
+        .then(response => response.json())
         .then(data => console.log(data));
 }
 
