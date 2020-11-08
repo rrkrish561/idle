@@ -11,7 +11,6 @@ exports.detectFace = (req, res) => {
 
     if (req.method === 'OPTIONS') {
         // Send response to OPTIONS requests
-        console.log("cors bs")
         
         res.set('Access-Control-Allow-Methods', 'POST');
         res.set('Access-Control-Allow-Headers', 'Content-Type');
@@ -20,12 +19,14 @@ exports.detectFace = (req, res) => {
     } else {
 
         console.log(req.body)
-        const body = req.body
 
         // res.status(200).send(req.body)
-        detect(body).then((result) => {
+        detect().then((result) => {
+            console.log(img)
             res.status(200).send(result);
-        })   
+        }).catch((err) => {
+            console.log(err)
+        })
     } 
 };
 
