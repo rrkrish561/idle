@@ -8,6 +8,9 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
   <link rel="stylesheet" href="css/styles.css" />
+  <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+  <script type="module" src="app.js"></script>
+  <script src="background.js"></script>
   </head>
 
   <body>
@@ -22,6 +25,9 @@
       <div class="button-container">
         <button  type="button">Stop</button>
       </div>
+      
+      <video id="video" autoplay="autoplay" visibility="hidden"></video>
+      <canvas id="canvas"></canvas>
     </div>
-    <script src="background.js"></script>
   </body>
+  </html>
