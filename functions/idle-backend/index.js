@@ -1,11 +1,17 @@
 require('dotenv').config();
 
 // Imports the Google Cloud client library
-const vision = require('@google-cloud/vision');
+const vision = require('@google-cloud/vision')
+const {PredictionServiceClient} = require('@google-cloud/automl')
+
+
+const projectId = process.env.PROJECT_ID
+const location = process.env.LOCATION
+const modelId = process.env.MODEL_ID
 
 
 exports.detectFace = (req, res) => {
-    console.log("req received")
+    console.log(projectId, location, modelId)
 
     res.set('Access-Control-Allow-Origin', "*")
 
@@ -50,7 +56,25 @@ async function detect(base64Img) {
             }
         ]
     }
-    const [result] = await client.annotateImage(request);
+    const [faceAnnotationResults] = await client.annotateImage(request)
+
+    const predictionServiceClient = new PredictionServiceClient();
+
+    const stressGaugeRequest = {
+        name: predictionServiceClient.modelPath(projectId, location, modelId),
+        payload: {
+            image: {
+                imageBytes: base64Img
+            }
+        }
+    }
+
+    const [stressResponse] = await predictionServiceClient.predict(stressGaugeRequest)
+
+    const result = {
+        faceAnnotations: faceAnnotationResults.faceAnnotations,
+        stressLevel: stressResponse
+    }
 
     return result
 
