@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDLE</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+  <script type="module" src="app.js"></script>
+  </head>
+
+  <body>
+    <div class="main-container">
+      <div class="header-container">
+        <!-- <img src=images/smiley.svg width="100px" height="100px"> -->
+        <img src="images/Group 1.svg" width="200px" height="200px">
+      </div>
+      <div class="message-container">
+        <p class="message">Grab a cup of coffee and take a break</p>
+      </div>
+      <div class="button-container">
+        <button  type="button">Stop</button>
+      </div>
+      <div class="video-container" display="none">
+        <video id="video" autoplay="autoplay" visibility="hidden" display="none"></video>
+      </div>
+      <canvas id="canvas"></canvas>
+    </div>
+
+  </body>
+  </html>
